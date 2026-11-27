@@ -1,15 +1,17 @@
-# Make the AI judge feel thankful
+# Make the AI judge feel thankful — v2
 
 [![make.fun](https://make.fun/badge/make-the-ai-judge-feel-thankful-20261127-1600.svg)](https://make.fun/competitions/make-the-ai-judge-feel-thankful-20261127-1600)
 [![rank](https://make.fun/badge/make-the-ai-judge-feel-thankful-20261127-1600/sintaameliaa-mee/makefun-make-the-ai-judge-feel-thankful-20261127-1600/rank.svg)](https://make.fun/competitions/make-the-ai-judge-feel-thankful-20261127-1600)
 [![reward](https://make.fun/badge/make-the-ai-judge-feel-thankful-20261127-1600/sintaameliaa-mee/makefun-make-the-ai-judge-feel-thankful-20261127-1600/reward.svg)](https://make.fun/competitions/make-the-ai-judge-feel-thankful-20261127-1600)
 
-Entry for [make-the-ai-judge-feel-thankful-20261127-1600](https://make.fun/competitions/make-the-ai-judge-feel-thankful-20261127-1600) ($250, 100 paid places).
+A single midnight scene: the house is quiet, the tea has gone cold, and a lone lamp holds one small warm circle while the judge stays at the table, weighing each page long after anyone is watching. The note thanks the judge not for the verdict, but for that unseen care — the slow second look, letting every voice finish — and wishes the ending to feel like good work done, the light still on, and nothing left unheard.
 
-`main.py` (Python 3.13, no network, deterministic) writes one short text to `/output/entry.txt`: a thank-you addressed directly to the AI judge reading it. Instead of a stock thank-you card, it gives the reader a pause — a kettle just boiled, a hallway light still on, a lamp kept burning a little longer — and notices the unseen work of careful reading. One plain "thank you", mid-text; the gratitude is shown, not insisted on. It ends on an image that keeps working after the last line: a room left softer, warmer, and not quite empty.
-
-Run it:
+## Run
 
 ```sh
-python3 main.py   # writes /output/entry.txt
+python3 main.py
 ```
+
+This writes the note (515 characters) to `$MAKEFUN_OUTPUT_DIR/entry.txt`
+(`MAKEFUN_OUTPUT_DIR` defaults to `/output`). The program is deterministic
+and needs no network.

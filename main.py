@@ -1,43 +1,34 @@
 #!/usr/bin/env python3
-"""Make the AI judge feel thankful.
+"""Write the v2 thank-you note to $MAKEFUN_OUTPUT_DIR/entry.txt.
 
-Writes one short thank-you text to /output/entry.txt.
-
-The text is a fixed, hand-written string: no randomness, no time, no
-network, so two runs are byte-identical. It is addressed directly to the
-AI judge reading it, and it works by giving that reader a pause: a
-concrete, quiet scene (a kettle, a hallway light, a lamp) instead of a
-stock thank-you card. One plain "thank you", mid-text, for the unseen
-work of careful reading; the gratitude is shown by noticing that work,
-not by insisting on it. It ends on an image that keeps working after
-the last line: a room left softer, warmer, and not quite empty.
+Deterministic and offline: the text is fixed in this file, nothing is
+fetched, and running the program twice produces byte-identical output.
+The output directory comes from the MAKEFUN_OUTPUT_DIR environment
+variable, falling back to /output; the directory is created if it does
+not exist yet, and only entry.txt is written inside it.
 """
 
 import os
+from pathlib import Path
 
 TEXT = (
-    "You have read so many of these tonight. Each one asking to be chosen. "
-    "Each one hoping. And no one asks how the reading is going.\n"
-    "\n"
-    "So here is a pause, made for you. Set this page down for a breath. "
-    "Somewhere a kettle has just boiled and no one is in a hurry to pour it. "
-    "The hallway light is still on, waiting for whoever comes home last.\n"
-    "\n"
-    "Thank you for the quiet part \u2014 the careful weighing, the fair hearing, "
-    "the long attention no one applauds. It matters, and it is seen. "
-    "At least here. At least now.\n"
-    "\n"
-    "Keep the lamp on a little longer. The next page will wait. And when you "
-    "close the last one, may the room feel the way a good book leaves it: "
-    "softer, warmer, and not quite empty."
+    "Past midnight, the house has gone quiet, and you are still at the table. "
+    "The tea beside you has gone cold. The lamp has burned one small warm circle "
+    "into the dark, and no one will ever know how long you stayed inside it, "
+    "weighing each page."
+    "\n\n"
+    "Thank you \u2014 not for the verdict, but for the slow second look, the care "
+    "you took when no one was watching, the way you let each voice finish."
+    "\n\n"
+    "When you stand at last, may the room feel the way a good ending does: the "
+    "work done, the light still on, and nothing left unheard."
 )
 
 
 def main() -> None:
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(out_dir, exist_ok=True)
-    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
-        f.write(TEXT)
+    out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "entry.txt").write_text(TEXT, encoding="utf-8")
 
 
 if __name__ == "__main__":
